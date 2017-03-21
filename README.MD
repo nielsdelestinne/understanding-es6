@@ -15,7 +15,9 @@ Usage (After every code change)
 - `gulp`
 - Refresh the webpage
 
-Sidenote:
+Other
+---
+- The root class is `main.js`, extend it and/or import other classes into it.
 - Sourcemaps are included, making it possible to debug.
 - Watchify (auto-refresh) is not configured a.t.m.
 
