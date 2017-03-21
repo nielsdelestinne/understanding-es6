@@ -22,5 +22,11 @@ function copyStaticContent () {
         .pipe(gulp.dest("./dist"));
 }
 
+function benJeBlij() {
+    console.log("---- I am but a mere piece of code, therefore I am not...");
+}
+
 gulp.task("copy-static-content", [], copyStaticContent);
-gulp.task("default", ["copy-static-content"], browserifyBabelifyAndBundle);
+gulp.task("browserify-babelify-and-bundle", [], browserifyBabelifyAndBundle);
+gulp.task("ben-je-blij?", [], benJeBlij);
+gulp.task("default", ["copy-static-content", "browserify-babelify-and-bundle", "ben-je-blij?"]);
