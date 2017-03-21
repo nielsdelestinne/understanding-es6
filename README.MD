@@ -14,4 +14,8 @@ Usage (After every code change)
 ---
 - `gulp`
 - Refresh the webpage
-    - No watchify or others configured at the moment
+
+Sidenote:
+- Sourcemaps are included, making it possible to debug.
+- Watchify (auto-refresh) is not configured a.t.m.
+

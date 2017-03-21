@@ -7,10 +7,13 @@ let paths = {
 };
 
 function browserifyBabelifyAndBundle() {
-    return browserify("./src/main.js")
+    return browserify({
+            entries: "./src/main.js",
+            debug: true
+        })
         .transform("babelify", {presets: ["es2015"]})
         .bundle()
-        .pipe(source('bundle.js'))
+        .pipe(source("bundle.js"))
         .pipe(gulp.dest("./dist"));
 }
 
