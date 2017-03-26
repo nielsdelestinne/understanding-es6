@@ -8,7 +8,7 @@ let paths = {
 
 function browserifyBabelifyAndBundle() {
     return browserify({
-            entries: "./src/main.js",
+            entries: ["./src/destructuring.js", "./src/expandedObjectFunctionality.js"],
             debug: true
         })
         .transform("babelify", {presets: ["es2015"]})
