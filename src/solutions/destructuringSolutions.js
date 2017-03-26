@@ -13,8 +13,7 @@ export default class Destructuring {
         };
 
         //START DOING YOUR THING HERE
-        let b;
-        //STOP DOING YOUR THING HERE
+        let {b} = itBe;
         console.log(b);
     }
 
@@ -25,6 +24,7 @@ export default class Destructuring {
 
         this.literallyDoNothing(
             //START DOING YOUR THING HERE
+            {speaking: talking, wordsOfWisdom} = itBe
             //STOP DOING YOUR THING HERE
         );
 
@@ -40,7 +40,7 @@ export default class Destructuring {
             wereABand: "Yes we are"
         };
         //START DOING YOUR THING HERE
-        let {whereABand} = djangoDjango;
+        let {whereABand = "A Winner is you"} = djangoDjango;
         //STOP DOING YOUR THING HERE
 
         console.log(whereABand)
@@ -61,7 +61,7 @@ export default class Destructuring {
             }
         };
         //START DOING YOUR THING HERE
-        let theMessage;
+        let {city:{hotel:{snow:{beach:{limbo:{totems:[,,[,theMessage,],]}}}}}} = plane;
         //STOP DOING YOUR THING HERE
 
         console.log(theMessage);
@@ -73,6 +73,7 @@ export default class Destructuring {
             c = "a",
             d = "b";
         //START DOING YOUR THING HERE
+        [a, b, c, d] = [c, d, b, a];
         //STOP DOING YOUR THING HERE
 
         if (a === "a" && b === "b" && c === "c" && d === "d") {
@@ -83,8 +84,8 @@ export default class Destructuring {
     timeForSomeRest() {
         let fighters = ["Baraka", "Scorpion", "Sonia", "Johnny Cage", "Bo Rai Cho"];
         //START DOING YOUR THING HERE
-        let netherWorldFighters=[];
-        let humanFighters=[];
+        let netherWorldFighters = fighters.slice(0,2);
+        let [,,...humanFighters]= fighters;
         //STOP DOING YOUR THING HERE
         if (netherWorldFighters.length === 2 && humanFighters.length === 3) {
             if (netherWorldFighters[0] === fighters[0] && netherWorldFighters[1] === fighters[1]) {
@@ -110,7 +111,20 @@ new Destructuring().thatsNotATypo();
 new Destructuring().weNeedToGoDeeper();
 new Destructuring().swapEm();
 new Destructuring().timeForSomeRest();
-let obj = {};
-// This is line XYZ. Uncomment the next line to start the final exercise of this class
-// new Destructuring().thisIsNotTheExercise(obj);
+let obj = {
+    one: {
+        two:[
+            "x","y", {five:{awinner:"A Winner"}}
+        ]
+    },
+    i:{
+        j:{
+            k:[
+                "a","b","c0","d",["a",{o:["1","2", " is you"]}, "a", "a"], "d", "d", "d"
+            ]
+        }
+    }
+};
+// This is line XYZ
+new Destructuring().thisIsNotTheExercise(obj);
 console.log("--------------END OF CHALLENGES----------------------");

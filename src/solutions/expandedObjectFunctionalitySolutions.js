@@ -20,14 +20,18 @@ export default class ExpandedObjectFunctionality {
 
     //OEFENING 2
     computedProperties() {
-        this.geweigerd = "geweigerd";
-        this.goedgekeurd = "goedgekeurd";
-        this.door = " door";
-        this.bemiddelaar = " bemiddelaar";
-        this.backofficer = " backofficer";
+        let geweigerd = "geweigerd";
+        let goedgekeurd = "goedgekeurd";
+        let door = " door";
+        let bemiddelaar = " bemiddelaar";
+        let backofficer = " backofficer";
 
         //START DOING YOUR THING HERE
-        let theComputed = {};
+        let theComputed = {
+            [goedgekeurd+door+bemiddelaar]:"Mieke de slak",
+            [geweigerd+door+backofficer]:"Joanna de luipaard",
+            [geweigerd+goedgekeurd+door+bemiddelaar+backofficer]:"snelle grietjes"
+        };
         //STOP DOING YOUR THING HERE
         console.log(`${theComputed["goedgekeurd door bemiddelaar"]} en ${theComputed["geweigerd door backofficer"]} zijn ${theComputed["geweigerdgoedgekeurd door bemiddelaar backofficer"]}`)
     }
@@ -84,6 +88,7 @@ export default class ExpandedObjectFunctionality {
 
         //Uncomment the line under me to see the answer!
         console.log(Object.getOwnPropertyNames(azerty).join("=>"));
+        //Contrary to what the book said, getOwnPropertyNames does NOT print out Symbols. To see those, use:
         console.log(Object.getOwnPropertySymbols(azerty));
     }
 

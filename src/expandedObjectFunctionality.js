@@ -21,11 +21,11 @@ export default class ExpandedObjectFunctionality {
 
     //OEFENING 2
     computedProperties() {
-        this.geweigerd = "geweigerd";
-        this.goedgekeurd = "goedgekeurd";
-        this.door = " door";
-        this.bemiddelaar = " bemiddelaar";
-        this.backofficer = " backofficer";
+        let geweigerd = "geweigerd";
+        let goedgekeurd = "goedgekeurd";
+        let door = " door";
+        let bemiddelaar = " bemiddelaar";
+        let backofficer = " backofficer";
 
         //START DOING YOUR THING HERE
         let theComputed = {};
@@ -61,16 +61,15 @@ export default class ExpandedObjectFunctionality {
         };
 
         //START DOING YOUR THING HERE
-        Object.assign(theOne, theFlyingSpaghettiMonster);
-        Object.assign(theOne, jesus);
-        Object.assign(theOne, allah);
-        //STOP DOING YOUR THING HERE
 
-        theOne.beAMessiah();
+        //STOP DOING YOUR THING HERE
+        if(theOne.beAMessiah){
+            theOne.beAMessiah();
+        }
     }
 
     //OEFENING 5
-    //What will be printed out after uncommenting the line?
+    //What will be printed out after uncommenting the line? (see page 75-76 if you didn't know it)
     order() {
         let anarky = Symbol("anarky");
         let azerty = {
@@ -84,8 +83,7 @@ export default class ExpandedObjectFunctionality {
         };
 
         //Uncomment the line under me to see the answer!
-        console.log(Object.getOwnPropertyNames(azerty).join("=>"));
-        console.log(Object.getOwnPropertySymbols(azerty));
+        // console.log(Object.getOwnPropertyNames(azerty).join("=>"));
     }
 
     //OEFENING 6
@@ -125,18 +123,18 @@ export default class ExpandedObjectFunctionality {
         };
 
         //START DOING YOUR THING HERE, but don't change the calls to Trunks and Piccolo
-        Object.setPrototypeOf(Trunks, saiyan);
         console.log(Trunks.summaryFathersSide());
-        Object.setPrototypeOf(Trunks, human);
         console.log(Trunks.summaryMothersSide());
-        Object.setPrototypeOf(namekian, alien);
-        Object.setPrototypeOf(Piccolo, namekian);
-        console.log(Piccolo.summary());
+        // Uncomment the following line after starting this exercise
+        // console.log(Piccolo.summary());
         //STOP DOING YOUR THING HERE
     }
 
     //OEFENING 7
     //So, what makes a Method a Method?
+    theOldestQuestionOfTheUniverse(){
+        let theAnswer = "pagina 80-81"
+    }
 
 }
 //OUTPUTS, DO NOT CHANGE
