@@ -14,58 +14,51 @@ export default class Promises {
         `);
     }
 
-    // Zie blz 217 in het boek!
     oefening1() {
         this.printTitle("Oefening 1", "Teken de relaties (op papier) tussen volgende begrippen: Pending state, Rejected, Settled, Unsettled, Fulfilled");
-        // pending state -> unsettled
-        // settled  -> fulfilled
-        //          -> rejected
     }
 
-    // Zie blz 221 in het boek!
     oefening2() {
         this.printTitle("Oefening 2", "definieer de te verwachte output string zonder de code aan te passen!");
 
         let output = "Result: ";
 
         let promiseA = new Promise(function(resolve, reject){
-            output += "-Promise A-"; // De promise executor executes altijd onmiddelijk voor alles wat na de executor komt in de code (bv. EndOfMethod)!
+            output += "-Promise A-";
         });
 
         promiseA.then(function() {
-            output += "-Then-"; // Zonder een resolved() in de constructor, wordt de promise nooit settled -> fulfilled waardoor then nooit uitgevoerd wordt
+            output += "-Then-";
         });
 
         output += "-EndOfMethod-";
 
-        this.assertSuccess(output, "DE_TE_VERWACHTE_OUTPUT_STRING_HIER", true); //this.assertSuccess(output, "Result: -Promise A--EndOfMethod-");
+        this.assertSuccess(output, "DE_TE_VERWACHTE_OUTPUT_STRING_HIER", true);
     }
 
-    // Zie blz 221 in het boek!
     oefening3() {
         this.printTitle("Oefening 3", "definieer de te verwachte output string zonder de code aan te passen!");
 
         let output = "Result: ";
 
         let promiseA = new Promise(function(resolve, reject){
-            output += "-Promise A-"; // De promise executor executes altijd onmiddelijk voor alles wat na de executor komt in de code (bv. EndOfMethod)!
+            output += "-Promise A-";
             resolve();
         });
 
-        promiseA.then(function() { // dit moet een arrow method zijn, anders is assertSuccess onbekend (error)! Lexical scope!
-            output += "-Then-"; // Zonder een resolved() in de constructor, wordt de promise nooit settled -> fulfilled waardoor then nooit uitgevoerd wordt
-            this.assertSuccess(output, "DE_TE_VERWACHTE_OUTPUT_STRING_HIER", true); //this.assertSuccess(output, "Result: -Promise A--EndOfMethod--Then-");
+        promiseA.then(function() {
+            output += "-Then-";
+            this.assertSuccess(output, "DE_TE_VERWACHTE_OUTPUT_STRING_HIER", true);
         });
 
         output += "-EndOfMethod-";
     }
 
-    // zie blz. 228-229 in het boek!
+
     oefening4() {
 
         // VRAAG 1
         // Hoeveel promises worden er in totaal gemaakt?
-        // ---> 6 promises
 
         this.printTitle("Oefening 4", "Zorg dat de assertSuccess methode slaagt (door enkel nieuwe code te schrijven, geen bestaande wijzigen)!");
 
@@ -73,25 +66,20 @@ export default class Promises {
            resolve(123);
         });
 
-        promise.then((value) => {
+        promise.then(() => {
            console.log("1");
-           // return value; // Waardes returnen geeft ze door aan de gechainde promise
-        }).then((value) => {
+        }).then(() => {
             console.log("2");
-            // return value;
-        }).then((value) => {
+        }).then(() => {
             console.log("3");
-            // return value;
-        }).then((value) => {
+        }).then(() => {
             console.log("4");
-            // return value;
         }).then((value) => {
             console.log("5");
             this.assertSuccess(value, 123);
         })
     }
 
-    // zie blz. 228-229 in het boek!
     oefening5() {
 
         this.printTitle("Oefening 5", "Zorg dat de assertSuccess methode slaagt (door enkel nieuwe code te schrijven, geen bestaande wijzigen)!");
@@ -108,25 +96,19 @@ export default class Promises {
             console.log("3");
         }).then(() => {
             console.log("4");
-            // throw new Error("Error-101");
         }).catch((error) => {
             console.log("5");
             this.assertSuccess(error.message, "Error-101");
         });
     }
 
-    // zie blz. 231-233 in het boek!
     oefening6() {
 
         // VRAAG 1
         // Hoeveel promises worden er in totaal gemaakt?
-        // ---> 3 promises (promiseA.then returned een nieuwe, extra promise)
 
         // VRAAG 2
         // Wat is de volgorde van de console.log statements?
-        // --> executors worden altijd dadelijk uitgevoerd (door de timeout zal eerst B, dan A ge-execute worden)
-        // --> daarna, wanneer promiseA fulfilled is, zal ThenA afgeprint worden en vervolgens ThenB
-        // --> Prom B -> Pom A -> Then A -> Then B
 
         this.printTitle("Oefening 6", "Beantwoord de vragen over de code!");
 
@@ -150,14 +132,10 @@ export default class Promises {
         });
     }
 
-    // zie blz. 231-233 in het boek!
     oefening7() {
 
         // VRAAG 1
         // Wat is de volgorde van de console.log statements?
-        // --> executors worden altijd dadelijk uitgevoerd (door de timeout zal de execution van B op zich laten wachten)
-        // --> Van zodra promise A fulfilled is, zal thenA geprint worden, dan fulfilled promise B en kan ook thenB uitgeprint worden
-        // --> Prom A -> Then A -> Prom B -> Then B
 
         this.printTitle("Oefening 7", "Beantwoord de vragen over de code!");
 
@@ -182,7 +160,6 @@ export default class Promises {
         });
     }
 
-    // zie blz. 233 in het boek!
     oefening8() {
 
         this.printTitle("Oefening 8", "Zorg dat de assertSuccess methode slaagt (door de bestaande code aan te passen, geen nieuwe bijschrijven)!");
@@ -206,40 +183,20 @@ export default class Promises {
             output += thenB;
             this.assertSuccess(output, "Result: -Promise A--Then A--Promise B--Then B-");
         });
-
-        // Met deze structuur laten we de executor van promiseB effectief
-        // wachten totdat wanneer Promise A fulfilled is, alvorens uitgevoerd te worden!
-        // promiseA.then((thenA) => {
-        //     output += thenA;
-        //     let promiseB = new Promise((resolve, reject) => {
-        //         output += "-Promise B-";
-        //         resolve("-Then B-");
-        //     });
-        //     return promiseB;
-        // }).then((thenB) => {
-        //     output += thenB;
-        //     this.assertSuccess(output, "Result: -Promise A--Then A--Promise B--Then B-");
-        // });
     }
 
-    // zie blz. 234-235 in het boek!
     oefening9() {
 
         this.printTitle("Oefening 9", "Beantwoord de vragen!");
 
         // VRAAG 1
         // Wat is de huidige output?
-        // ---> A-B-C-D-E
 
         // VRAAG 2
         // Bij een aanpassing van resolve("A") naar reject("A"): Wat is de output?
-        // ---> A
-        // ---> De rejection handler wordt altijd dadelijk gecalled, wacht niet op alle andere promises om fulfilled te geraken
 
         // VRAAG 3
         // Bij een aanpassing van resolve("D") naar reject("D"): Wat is de output?
-        // ---> D
-        // ---> De rejection handler wordt altijd dadelijk gecalled, wacht niet op alle andere promises om fulfilled te geraken
 
         let promiseA = new Promise((resolve, reject) => {
             resolve("A");
