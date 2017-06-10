@@ -8,16 +8,20 @@ let paths = {
 
 function browserifyBabelifyAndBundle() {
     return browserify({
-            entries: ["./src/promises/promises.js"],
-            debug: true
-        })
+        entries: ["./src/modules/oefeningen/oef1.js", "./src/modules/oefeningen/titlePrinter.js",
+            "./src/modules/oefeningen/oef2_chefkok.js", "./src/modules/oefeningen/hamburger.js",
+            "./src/modules/oefeningen/oef3_doorgeefluik.js", "./src/modules/oefeningen/luik.js", "./src/modules/oefeningen/keuken.js",
+            "./src/modules/oefeningen/oef4_afwas.js", "./src/modules/oefeningen/afwas.js",
+        ],
+        debug: true
+    })
         .transform("babelify", {presets: ["es2015"]})
         .bundle()
         .pipe(source("bundle.js"))
         .pipe(gulp.dest("./dist"));
 }
 
-function copyStaticContent () {
+function copyStaticContent() {
     return gulp.src(paths.staticContent)
         .pipe(gulp.dest("./dist"));
 }
